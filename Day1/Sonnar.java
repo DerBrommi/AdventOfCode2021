@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 /**
  * Day1
  */
-public class Day1 {
+public class Sonnar {
 
     public static void main(String[] args) throws FileNotFoundException {
         basicScanner();
