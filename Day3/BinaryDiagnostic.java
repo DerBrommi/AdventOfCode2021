@@ -60,7 +60,6 @@ public class BinaryDiagnostic {
         System.out.println("Result: " + gammaRateDec * epsilonRateDec);
     }
 
-    // Not Ready yet
     public static void lifeSupportRating() throws FileNotFoundException {
         List<String> list = Importer.importList("Day3/input.txt");
         int stringLength = list.get(0).length();
@@ -80,16 +79,16 @@ public class BinaryDiagnostic {
             for (String line : co2List) {
                 co2Counter += Character.getNumericValue(line.charAt(bitPos));
             }
-
-            if (oxyCounter > oxyList.size() / 2)
-                oxyString += 1;
+            // Fuck Math
+            if (oxyCounter < oxyList.size() / 2.0)
+                oxyString += '0';
             else
-                oxyString += 0;
+                oxyString += '1';
 
-            if (co2Counter > co2List.size() / 2)
-                co2String += 0;
+            if (co2Counter < co2List.size() / 2.0)
+                co2String += '1';
             else
-                co2String += 1;
+                co2String += '0';
 
             final String oxyFilter = oxyString;
             final String co2Filter = co2String;
