@@ -1,9 +1,7 @@
 package Day3;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import Core.*;
