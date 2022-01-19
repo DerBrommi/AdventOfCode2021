@@ -16,52 +16,36 @@ public class BinaryDiagnostic {
     }
 
     public static void binaryDiagnostic() throws FileNotFoundException {
-        // Scanner to just read line count
-        // Else scanner skips first line
-        Scanner lscanner = new Scanner(new File("Day3/input.txt"));
-        Scanner scanner = new Scanner(new File("Day3/input.txt"));
 
-        int lineCount = 0;
-        int[] counter = new int[lscanner.nextLine().length()];
-        lscanner.close();
+        List<String> data = Importer.importList(3);
 
-        while (scanner.hasNext()) {
-            char[] currentLine = scanner.nextLine().toCharArray();
-            lineCount++;
+        String leastCommon = "";
+        String mostCommon = "";
 
-            for (int i = 0; i < currentLine.length; i++) {
-                if (currentLine[i] == '1')
-                    counter[i]++;
+        for (int i = 0; i < data.get(0).length(); i++) {
+            int counter = 0;
+            for (String string : data) {
+                counter += Character.getNumericValue(string.charAt(i));
             }
-
+            if (counter > data.size() / 2.0) {
+                leastCommon += "0";
+                mostCommon += "1";
+            } else {
+                leastCommon += "1";
+                mostCommon += "0";
+            }
         }
 
-        String gammaRate = "";
-        String epsilonRate = "";
+        int gammaRateDec = Integer.parseInt(mostCommon, 2);
+        int epsilonRateDec = Integer.parseInt(leastCommon, 2);
 
-        for (int i = 0; i < counter.length; i++) {
-            if (counter[i] > lineCount / 2)
-                gammaRate += 1;
-            else
-                gammaRate += 0;
-
-            if (counter[i] < lineCount / 2)
-                epsilonRate += 1;
-            else
-                epsilonRate += 0;
-        }
-
-        int gammaRateDec = Integer.parseInt(gammaRate, 2);
-        int epsilonRateDec = Integer.parseInt(epsilonRate, 2);
-
-        System.out.println("Line Count: " + lineCount);
         System.out.println("Gamma: " + gammaRateDec);
         System.out.println("Epsilon: " + epsilonRateDec);
         System.out.println("Result: " + gammaRateDec * epsilonRateDec);
     }
 
     public static void lifeSupportRating() throws FileNotFoundException {
-        List<String> list = Importer.importList("Day3/input.txt");
+        List<String> list = Importer.importList(3);
         int stringLength = list.get(0).length();
 
         String oxyString = "";
